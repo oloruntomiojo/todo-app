@@ -30,6 +30,10 @@ export const GlobalStyles = createGlobalStyle`
         font-weight: 500;
         display: block;
         font-family: inherit;
+        cursor: pointer;
 
+        &:hover {
+            box-shadow: 5px 5px 5px 2px rgba(0,0,0, .2);
+        }
     }
 `;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import AddTodo from './components/AddTodo';
 import TodosList from './components/TodosList';
-import { GlobalStyles } from './GlobalStyles';
+import { GlobalStyles } from './styles/GlobalStyles';
 import useLocalStorage from './hooks/useLocalStorage';
 
 // Styled Components
