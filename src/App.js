@@ -1,8 +1,10 @@
 import styled from 'styled-components';
-import AddTodo from './components/AddTodo';
-import TodosList from './components/TodosList';
+import {AddTodo} from './components/AddTodo/';
+import {TodosList} from './components/TodosList/';
 import { GlobalStyles } from './styles/GlobalStyles';
 import useLocalStorage from './hooks/useLocalStorage';
+import { TodosListContext } from './hooks/TodosListContext';
+import { useMemo } from 'react';
 
 // Styled Components
 const AppContainer = styled.div`
@@ -27,14 +29,19 @@ function App() {
   // reset local storage when it gets to 100;
   localID === 100 && setLocalID(1);
 
+  const providerValue = useMemo(() => ({todosList, setTodosList}), [todosList, setTodosList]);
+
   return (
       <AppContainer>
         <GlobalStyles />
         <Header1>My Organizer</Header1>
 
-        <AddTodo setTodosList={setTodosList} todosList={todosList} localID={localID} setLocalID={setLocalID} />
+        <TodosListContext.Provider value={providerValue}>
+          <AddTodo localID={localID} setLocalID={setLocalID} />
 
-        <TodosList todosList={todosList} setTodosList={setTodosList}/>
+          <TodosList />
+        </TodosListContext.Provider>
+        
       </AppContainer>
   );
 }
